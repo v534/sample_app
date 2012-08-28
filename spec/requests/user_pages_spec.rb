@@ -8,7 +8,7 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_selector('h2',    text: user.name) }
+    #it { should have_selector('h2',    text: user.name) }
     it { should have_selector('title', text: user.name) }
   end
 
@@ -41,6 +41,10 @@ describe "User pages" do
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
+      end
+
+      describe "after saving the user" do
+        it { should have_link('Sign out') }
       end
     end
   end
